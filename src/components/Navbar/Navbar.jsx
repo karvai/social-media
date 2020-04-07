@@ -6,27 +6,27 @@ const Navbar = () => {
     <nav>
       <ul>
         <li>
-          <a className={`${s.item} ${s.active}`} href="#">
+          <a className={`${s.item} ${s.active}`} href="/profile">
             Profile
           </a>
         </li>
         <li>
-          <a className={s.item} href="#">
+          <a className={s.item} href="/dialogs">
             Messages
           </a>
         </li>
         <li>
-          <a className={s.item} href="#">
+          <a className={s.item} href="/news">
             News
           </a>
         </li>
         <li>
-          <a className={s.item} href="#">
+          <a className={s.item} href="/music">
             Music
           </a>
         </li>
         <li>
-          <a className={s.item} href="#">
+          <a className={s.item} href="/settings">
             Settings
           </a>
         </li>
