@@ -10,25 +10,19 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 function App(props) {
-  return (
-    <div className="app-wrapper">
-      <Header />
-      <Navbar />
-      <div class="content">
-        <Route
-          path="/profile"
-          render={() => <Profile state={props.state.profilePage} />}
-        />
-        <Route
-          path="/dialogs"
-          render={() => <Dialogs state={props.state.dialogsPage} />}
-        />
-        <Route path="/news" render={() => <News />} />
-        <Route path="/music" render={() => <Music />} />
-        <Route path="/settings" render={() => <Settings />} />
-      </div>
-    </div>
-  );
+	return (
+		<div className="app-wrapper">
+			<Header />
+			<Navbar />
+			<div class="content">
+				<Route path="/profile" render={() => <Profile state={props.state.profilePage} />} />
+				<Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
+				<Route path="/news" render={() => <News />} />
+				<Route path="/music" render={() => <Music />} />
+				<Route path="/settings" render={() => <Settings />} />
+			</div>
+		</div>
+	);
 }
 
 export default App;
