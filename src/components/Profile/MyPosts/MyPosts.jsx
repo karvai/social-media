@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./MyPosts.module.css";
+import style from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
@@ -15,7 +15,7 @@ const MyPosts = (props) => {
 	};
 
 	return (
-		<div className={s.postsBlock}>
+		<div className={style.postsBlock}>
 			<div>
 				<h3>My posts</h3>
 				<div>
@@ -25,7 +25,7 @@ const MyPosts = (props) => {
 					<button onClick={onAddPost}>Submit</button>
 				</div>
 			</div>
-			<div className={s.posts}>{postsElements}</div>
+			<div className={style.posts}>{postsElements}</div>
 		</div>
 	);
 };
