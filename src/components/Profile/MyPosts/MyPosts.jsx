@@ -4,29 +4,25 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-	let body;
+	let postsElements = props.posts.map((p) => (<Post message={p.message} likes={p.likes} />));
 
-	let onNewMessageChange = (e) => {
-		body = e.target.value;
+	let onPostChange = (e) => {
+		props.updateNewPostText(e.target.value)
 	};
 
-	let addNewPost = () => {
-		alert(body);
+	let onAddPost = () => {
+		props.addPost();
 	};
-
-	let postsElements = props.posts.map((p) => (
-		<Post message={p.message} likes={p.likes} />
-	));
 
 	return (
 		<div className={s.postsBlock}>
 			<div>
 				<h3>My posts</h3>
 				<div>
-					<textarea onChange={onNewMessageChange} ></textarea>
+					<textarea onChange={onPostChange} value={props.newPostText}></textarea>
 				</div>
 				<div>
-					<button onClick={addNewPost}>Submit</button>
+					<button onClick={onAddPost}>Submit</button>
 				</div>
 			</div>
 			<div className={s.posts}>{postsElements}</div>
