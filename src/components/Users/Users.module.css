@@ -1,3 +1,13 @@
 .avatar img {
 	width: 80px;
+	border-radius: 50%;
+}
+
+.currentPageNumber {
+	font-weight: bold;
+	cursor: default;
+}
+
+.pageNumber {
+	cursor: pointer;
 }
