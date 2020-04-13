@@ -1,13 +1,14 @@
-import React from "react";
-import style from "./Header.module.css";
+import React from "react"
+import style from "./Header.module.css"
+import { NavLink } from "react-router-dom"
 
-const Header = () => {
+const Header = (props) => {
 	return (
 		<header>
-			<img
-				src="https://www.plantronics.com/etc/designs/plantronics/clientlib-all/img/poly-logo.png"
-				alt="logo"
-			/>
+			<img src="https://www.plantronics.com/etc/designs/plantronics/clientlib-all/img/poly-logo.png" alt="logo" />
+			<div className={style.loginBlock}>
+				{props.isAuth ? props.login : <NavLink to={'/login'}> Login </NavLink>}
+			</div>
 		</header>
 	);
 };
