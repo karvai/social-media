@@ -2,6 +2,7 @@ import React from 'react'
 import style from './Users.module.css'
 import userPhotoNotSet from '../../assets/img/user.png'
 import { NavLink } from 'react-router-dom'
+import Axios from 'axios'
 
 let Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -35,13 +36,39 @@ let Users = (props) => {
 					</div>
 					<div>
 						<button
-							onClick={() => { props.toggleFollow(u.id) }}>
-							{u.followed ? 'Unfollow' : 'Follow'}
+							onClick={() => {
+
+								if (!u.followed) {
+									Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+										withCredentials: true,
+										headers: { "API-KEY": "dd3b13dd-5cdc-4f85-858f-405932e6c96b" }
+									})
+										.then(response => {
+											if (response.data.resultCode === 0) {
+												props.toggleFollow(u.id)
+											}
+										})
+								}
+
+								else {
+									Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+										withCredentials: true,
+										headers: { "API-KEY": "dd3b13dd-5cdc-4f85-858f-405932e6c96b" }
+									})
+										.then(response => {
+											if (response.data.resultCode === 0) {
+												props.toggleFollow(u.id)
+											}
+										})
+								}
+
+							}}> {u.followed ? 'Unfollow' : 'Follow'}
 						</button>
 					</div>
 				</div>
-			))}
-		</div>
+			))
+			}
+		</div >
 	)
 }
 
