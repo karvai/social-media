@@ -3,6 +3,7 @@ import style from './Users.module.css'
 import userPhotoNotSet from '../../assets/img/user.png'
 import { NavLink } from 'react-router-dom'
 import Axios from 'axios'
+import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -39,27 +40,17 @@ let Users = (props) => {
 							onClick={() => {
 
 								if (!u.followed) {
-									Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-										withCredentials: true,
-										headers: { "API-KEY": "dd3b13dd-5cdc-4f85-858f-405932e6c96b" }
+									usersAPI.follow(u.id).then(data => {
+										if (data.resultCode === 0) {
+											props.toggleFollow(u.id)
+										}
 									})
-										.then(response => {
-											if (response.data.resultCode === 0) {
-												props.toggleFollow(u.id)
-											}
-										})
 								}
 
 								else {
-									Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-										withCredentials: true,
-										headers: { "API-KEY": "dd3b13dd-5cdc-4f85-858f-405932e6c96b" }
+									usersAPI.unfollow(u.id).then(data => {
+										props.toggleFollow(u.id)
 									})
-										.then(response => {
-											if (response.data.resultCode === 0) {
-												props.toggleFollow(u.id)
-											}
-										})
 								}
 
 							}}> {u.followed ? 'Unfollow' : 'Follow'}
